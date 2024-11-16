@@ -13,12 +13,12 @@ public class CustomerOrder {
 
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "order_comicbook",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "comic_book_id")
-    )
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "order_comicbook",
+//            joinColumns = @JoinColumn(name = "order_id"),
+//            inverseJoinColumns = @JoinColumn(name = "comic_book_id")
+//    )
 
 
     private double totalAmount;
