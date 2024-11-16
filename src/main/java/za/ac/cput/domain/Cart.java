@@ -18,15 +18,6 @@ public class Cart {
     private Long cartId;
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Customer customer;
-//    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-//    @JoinTable(
-//            name = "cart_comicbook",
-//            joinColumns = @JoinColumn(name = "cart_id"),
-//            inverseJoinColumns = @JoinColumn(name = "comic_book_id")
-//    )
-//    @Nullable
-//    private List<ComicBook> comicBooks;
-
     private LocalDate createdDate;
     private LocalDate updatedDate;
 
