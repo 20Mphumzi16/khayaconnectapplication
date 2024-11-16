@@ -27,7 +27,6 @@ public class Seller extends User {
         this.password = s.password;
         this.businessName = s.businessName;
         this.products = s.products;
-        this.roles = s.roles;
     }
 
     public String getBusinessName() {
@@ -54,7 +53,6 @@ public class Seller extends User {
         private Contact contact;
         private String businessName;
         private List<Product> products;
-        protected Set<Role> roles;
 
         // Builder methods
         public SellerBuilder setUserId(long userId) {
@@ -87,11 +85,6 @@ public class Seller extends User {
             return this;
         }
 
-        public SellerBuilder setRoles(Set<Role> roles) {
-            this.roles = roles;
-            return this;
-        }
-
         // Copy constructor
         public SellerBuilder copy(Seller s) {
             if (s.getUserId() != null) {
@@ -103,7 +96,6 @@ public class Seller extends User {
             this.contact = s.contact;
             this.businessName = s.businessName;
             this.products = s.products;
-            this.roles = s.roles;
             return this;
         }
 
@@ -120,7 +112,6 @@ public class Seller extends User {
                 ", contact=" + contact +
                 ", businessName='" + businessName + '\'' +
                 ", products=" + products +
-                ", roles=" + roles +
                 '}';
     }
 
@@ -134,12 +125,12 @@ public class Seller extends User {
                 Objects.equals(contact, seller.contact) &&
                 Objects.equals(password, seller.password) &&
                 Objects.equals(businessName, seller.businessName) &&
-                Objects.equals(products, seller.products) &&
-                Objects.equals(roles, seller.roles);
+                Objects.equals(products, seller.products);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, name, contact, password, businessName, products, roles);
+        return Objects.hash(userId, name, contact, password, businessName, products);
     }
 }
