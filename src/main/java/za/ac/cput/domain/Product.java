@@ -16,12 +16,18 @@ public class Product {
 
     private String description;
 
+    @Lob
+    @Column(length=100000)
+    private byte[] photo;
+
     public Product() {}
 
-    public Product(String name, double price, String description) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    public Product(Builder builder) {
+        this.name = builder.name;
+        this.price = builder.price;
+        this.description = builder.description;
+        this.photo = builder.photo;
+
     }
 
     // Getter and setter methods
@@ -82,5 +88,45 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(productId, name, price, description);
+    }
+
+    public static class Builder{
+        private long productId;
+
+        private String name;
+        private double price;
+
+        private String description;
+
+        private byte[] photo;
+
+        public Builder setProductId(long productId) {
+            this.productId = productId;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setPrice(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder setDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder setPhoto(byte[] photo) {
+            this.photo = photo;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(this);
+        }
     }
 }
