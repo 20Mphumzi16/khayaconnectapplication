@@ -19,7 +19,7 @@ public class User{
     @Embedded
     protected Name name;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     protected Contact contact;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -1,5 +1,6 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Set;
 public class Seller extends User {
 
     @Column(nullable = false)
+   // @JsonProperty
     private String businessName;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
