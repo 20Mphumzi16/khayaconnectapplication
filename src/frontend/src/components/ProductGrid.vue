@@ -30,8 +30,12 @@ export default {
     handleItemSelected(id) {
       this.$router.push({ name: 'view-item', params: { id } });
     },
+
     handleAddToCart(id) {
+      console.log('Product ID:', id);
+      console.log('Adding product to Cart');
       this.$emit('add-to-cart', id); // Emit the SKU to the parent component
+      console.log('Updated Cart:', this.cart);
     },
     handleToggleWishlist(id) {
       this.$emit('toggle-wishlist', id);

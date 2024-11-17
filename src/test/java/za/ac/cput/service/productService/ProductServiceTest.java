@@ -41,24 +41,24 @@ class ProductServiceTest {
 
     @BeforeAll
     static void setUp() {
-        String url = "images/Umleqwa.jpeg";
-        String url1 = "images/tupperwar.jpeg";
-        String url2 = "images/iphone-x-silver.jpg";
+        String url = "images/amagwinya.jpeg";
+        String url1 = "images/item1.png";
+        String url2 = "images/weave.jpeg";
         try {
 
             image = ImageIO.read(new File(url));
             out = new ByteArrayOutputStream();
-            ImageIO.write(image, "png", out);
+            ImageIO.write(image, "jpeg", out);
 
 
             image1 = ImageIO.read(new File(url1));
             out1 = new ByteArrayOutputStream();
-            ImageIO.write(image1, "jpg", out1);
+            ImageIO.write(image1, "png", out1);
 
 
             image2 = ImageIO.read(new File(url2));
             out2 = new ByteArrayOutputStream();
-            ImageIO.write(image2, "jpg", out2);
+            ImageIO.write(image2, "jpeg", out2);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -68,11 +68,11 @@ class ProductServiceTest {
 
 
 
-        prod1 = ProductFactory.buildProduct("Umleqwaa", 80, "Umleqwa Available ", out.toByteArray());
+        prod1 = ProductFactory.buildProduct("Amagwinya", 20, "Amagwinya Available ", out.toByteArray());
         System.out.println(prod1);
-        prod2 = ProductFactory.buildProduct("tupper wear", 700, "Tupperwear skhaftn ",out1.toByteArray());
+        prod2 = ProductFactory.buildProduct("Item 1", 700, "Item 1 skhaftn ",out1.toByteArray());
         System.out.println(prod2);
-        prod3 = ProductFactory.buildProduct("Iphone 12 Pro", 9000, "Iphone Available", out2.toByteArray());
+        prod3 = ProductFactory.buildProduct("Weave", 5000, "Weave Available", out2.toByteArray());
         System.out.println(prod3);
     }
 

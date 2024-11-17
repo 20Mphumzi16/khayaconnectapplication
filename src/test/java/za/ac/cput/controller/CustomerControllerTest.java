@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import za.ac.cput.domain.Address;
 import za.ac.cput.domain.Contact;
 import za.ac.cput.domain.Customer;
@@ -25,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.class)
+
 class CustomerControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
@@ -36,7 +38,7 @@ class CustomerControllerTest {
     private Customer customer2;
 
     static  Customer savedCustomer;
-    private final String base_url = "http://localhost:8080/comiccity/Customer";
+    private final String base_url = "http://localhost:8080/khayaconnection/Customer";
     @BeforeEach
     void setUp() {
 
