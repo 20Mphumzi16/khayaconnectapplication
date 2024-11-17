@@ -3,7 +3,6 @@ package za.ac.cput.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import za.ac.cput.domain.Cart;
-import za.ac.cput.domain.ComicBook;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.service.cartService.CartService;
 import za.ac.cput.service.customerService.CustomerService;
@@ -34,25 +33,25 @@ public class AssignCartToCustomerApi {
             Customer customer = customerService.read(customerId);
             System.out.println("Fetched Customer To be assigned:"+customer);
 
-            List<ComicBook> comicBookList = new ArrayList<>();
-
-            Cart newCart = new Cart.Builder()
-                    .setCartId(1L)
-                    .setComicBooks(comicBookList)
-                    .setCustomer(customer)
-                    .setCreatedDate(LocalDate.now())
-                    .setUpdatedDate(LocalDate.now())
-                    .build();
+//            List<ComicBook> comicBookList = new ArrayList<>();
+//
+//            Cart newCart = new Cart.Builder()
+//                    .setCartId(1L)
+//                    .setComicBooks(comicBookList)
+//                    .setCustomer(customer)
+//                    .setCreatedDate(LocalDate.now())
+//                    .setUpdatedDate(LocalDate.now())
+//                    .build();
             System.out.println("Cart Assigned:");
 
-            Cart cartFromDB=cartService.create(newCart);
+            // Cart cartFromDB=cartService.create(newCart);
 
-            return cartFromDB;
+            // return cartFromDB;
         }
 
         throw new IllegalArgumentException();
 
-    }
+}
 
 
 }
