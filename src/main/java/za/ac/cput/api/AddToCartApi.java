@@ -67,5 +67,5 @@ public class AddToCartApi {
         }
 
         return null;
-    }
+}
 }

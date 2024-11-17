@@ -2,6 +2,7 @@ package za.ac.cput.service.adminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Admin;
 import za.ac.cput.domain.Role;
@@ -19,22 +20,22 @@ public class AdminService implements IAdminService {
     @Autowired
     private RoleRepository roleRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public Admin create(Admin admin) {
-//        String encodedPassword = passwordEncoder.encode(admin.getPassword());
-//        Role adminRole = roleRepository.findByName("ROLE_ADMIN")
-//                .orElseThrow(() -> new RuntimeException("Role not found: ROLE_ADMIN"));
-//
-//        Admin admin2 = new Admin.AdminBuilder()
-//                .copy(admin)
-//                .setPassword(encodedPassword)
-//                .setRoles(Collections.singleton(adminRole))
-//                .build();
+        String encodedPassword = passwordEncoder.encode(admin.getPassword());
+        Role adminRole = roleRepository.findByName("ROLE_ADMIN")
+                .orElseThrow(() -> new RuntimeException("Role not found: ROLE_ADMIN"));
+
+        Admin admin2 = new Admin.AdminBuilder()
+                .copy(admin)
+                .setPassword(encodedPassword)
+                .setRoles(Collections.singleton(adminRole))
+                .build();
 
 
-        return adminRepository.save(admin);
+        return adminRepository.save(admin2);
     }
 
     @Override

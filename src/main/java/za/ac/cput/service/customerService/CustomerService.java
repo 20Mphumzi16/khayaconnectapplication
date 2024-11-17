@@ -2,6 +2,7 @@ package za.ac.cput.service.customerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.domain.Role;
@@ -22,24 +23,24 @@ public class CustomerService implements ICustomerService{
     @Autowired
     private RoleRepository roleRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
     public Customer create(Customer customer) {
 
-//        String encodedPassword = passwordEncoder.encode(customer.getPassword());
-//        Role adminRole = roleRepository.findByName("ROLE_CUSTOMER")
-//                .orElseThrow(() -> new RuntimeException("Role not found: ROLE_CUSTOMER"));
-//
-//        Customer customer2 = new Customer.CustomerBuilder()
-//                .copy(customer)
-//                .setPassword(encodedPassword)
-//                .setRoles(Collections.singleton(adminRole))
-//                .build();
+        String encodedPassword = passwordEncoder.encode(customer.getPassword());
+        Role adminRole = roleRepository.findByName("ROLE_CUSTOMER")
+                .orElseThrow(() -> new RuntimeException("Role not found: ROLE_CUSTOMER"));
 
-        return repository.save(customer);
+        Customer customer2 = new Customer.CustomerBuilder()
+                .copy(customer)
+                .setPassword(encodedPassword)
+                .setRoles(Collections.singleton(adminRole))
+                .build();
+
+        return repository.save(customer2);
     }
 
     @Override

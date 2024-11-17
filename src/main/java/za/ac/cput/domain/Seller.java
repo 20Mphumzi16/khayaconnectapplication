@@ -25,6 +25,7 @@ public class Seller extends User {
     private String hearAboutUs;
     private boolean isVerified;
 
+
     @Lob
     private byte[] saIdentityDocument;
 
@@ -48,6 +49,7 @@ public class Seller extends User {
         this.saIdentityDocument = s.saIdentityDocument;
         this.proofOfAddress = s.proofOfAddress;
         this.isVerified = s.isVerified;
+        this.roles = s.roles;
 
 
 
@@ -71,21 +73,16 @@ public class Seller extends User {
     public String getBusinessAddress() {
         return businessAddress;
     }
-    public void setBusinessAddress(String businessAddress) {
-        this.businessAddress = businessAddress;
 
-    }
     public String getBusinessBrief() {
         return businessBrief;
 
-    }
-    public void setBusinessBrief(String businessBrief) {
-        this.businessBrief = businessBrief;
     }
 
     public String getHearAboutUs() {
         return hearAboutUs;
     }
+
 
     public static class SellerBuilder {
 
@@ -100,6 +97,7 @@ public class Seller extends User {
         private String hearAboutUs;
         private String businessEmail;
         private boolean isVerified;
+        protected Set<Role> roles;
 
         @Lob
         private byte[] saIdentityDocument;
@@ -160,6 +158,10 @@ public class Seller extends User {
 
         public SellerBuilder setVerified(boolean verified) {
             isVerified = verified;
+            return this;
+        }
+        public SellerBuilder setRoles(Set<Role> roles) {
+            this.roles = roles;
             return this;
         }
 
