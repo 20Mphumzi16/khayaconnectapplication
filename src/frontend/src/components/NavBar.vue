@@ -68,8 +68,8 @@ header {
 
 /* Top Section */
 .top-section {
-  background-color: #000;
-  color: #fff;
+  background-color: #0818A8;
+  color:#0818A8;
   padding: 10px 20px;
   display: flex;
   justify-content: flex-end;

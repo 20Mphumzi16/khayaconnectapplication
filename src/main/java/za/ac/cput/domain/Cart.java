@@ -1,6 +1,6 @@
 package za.ac.cput.domain;
 
-import io.micrometer.common.lang.Nullable;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -20,7 +20,6 @@ public class Cart {
     private Long cartId;
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Customer customer;
-
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinTable(
             name = "cart_product",
@@ -36,11 +35,11 @@ public class Cart {
     public Cart() {
     }
     protected Cart(Builder builder){
-       this.cartId=builder.cartId;
-       this.customer=builder.customer;
-       this.products=builder.products;
-       this.createdDate=builder.createdDate;
-       this.updatedDate=builder.updatedDate;
+        this.cartId=builder.cartId;
+        this.customer=builder.customer;
+        this.products=builder.products;
+        this.createdDate=builder.createdDate;
+        this.updatedDate=builder.updatedDate;
 
     }
 
@@ -48,7 +47,7 @@ public class Cart {
         return cartId;
     }
 
-    public List<Product> getProducts() {
+    public List<Product> getCartProducts() {
         return products;
     }
 
@@ -67,8 +66,7 @@ public class Cart {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cart cart = (Cart) o;
+        if (!(o instanceof Cart cart)) return false;
         return Objects.equals(cartId, cart.cartId) && Objects.equals(customer, cart.customer) && Objects.equals(products, cart.products) && Objects.equals(createdDate, cart.createdDate) && Objects.equals(updatedDate, cart.updatedDate);
     }
 
@@ -92,7 +90,7 @@ public class Cart {
 
         private Long cartId;
         private Customer customer;
-        private List<Product> products;
+        private  List<Product> products;
         private LocalDate createdDate;
         private LocalDate updatedDate;
 
