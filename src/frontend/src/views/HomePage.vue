@@ -59,12 +59,15 @@ export default {
       allItems: [],
 
     }
+
   },
 
 
   methods: {
     toggleSidebar() {
+
       this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar visibility
+
 
     },
     async fetchItems() {
@@ -89,19 +92,19 @@ export default {
 </script>
 
 <style scoped>
-/* Dark overlay when sidebar is open */
+
 .dark-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Darken the background */
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 
-/* Optional: Main content might shift to the right when sidebar is open */
+
 .main-content.sidebar-open {
-  margin-left: 250px; /* Adjust based on sidebar width */
+  margin-left: 250px;
 }
 </style>
