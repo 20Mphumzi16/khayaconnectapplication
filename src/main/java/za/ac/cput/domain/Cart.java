@@ -1,8 +1,10 @@
 package za.ac.cput.domain;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -18,14 +20,14 @@ public class Cart {
     private Long cartId;
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Customer customer;
-//    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-//    @JoinTable(
-//            name = "cart_comicbook",
-//            joinColumns = @JoinColumn(name = "cart_id"),
-//            inverseJoinColumns = @JoinColumn(name = "comic_book_id")
-//    )
-//    @Nullable
-//    private List<ComicBook> comicBooks;
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "cart_product",
+            joinColumns = @JoinColumn(name = "cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    @Nullable
+    private List<Product> products;
 
     private LocalDate createdDate;
     private LocalDate updatedDate;
@@ -35,7 +37,7 @@ public class Cart {
     protected Cart(Builder builder){
        this.cartId=builder.cartId;
        this.customer=builder.customer;
-//       this.comicBooks=builder.comicBooks;
+       this.products=builder.products;
        this.createdDate=builder.createdDate;
        this.updatedDate=builder.updatedDate;
 
@@ -45,9 +47,9 @@ public class Cart {
         return cartId;
     }
 
-//    public List<ComicBook> getComicBooks() {
-//        return comicBooks;
-//    }
+    public List<Product> getProducts() {
+        return products;
+    }
 
     public LocalDate getCreatedDate() {
         return createdDate;
@@ -64,13 +66,14 @@ public class Cart {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Cart cart)) return false;
-        return Objects.equals(cartId, cart.cartId) && Objects.equals(customer, cart.customer) && Objects.equals(createdDate, cart.createdDate) && Objects.equals(updatedDate, cart.updatedDate);
+        if (o == null || getClass() != o.getClass()) return false;
+        Cart cart = (Cart) o;
+        return Objects.equals(cartId, cart.cartId) && Objects.equals(customer, cart.customer) && Objects.equals(products, cart.products) && Objects.equals(createdDate, cart.createdDate) && Objects.equals(updatedDate, cart.updatedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cartId, customer, createdDate, updatedDate);
+        return Objects.hash(cartId, customer, products, createdDate, updatedDate);
     }
 
     @Override
@@ -78,7 +81,7 @@ public class Cart {
         return "Cart{" +
                 "cartId=" + cartId +
                 ", customer=" + customer +
-//                ", comicBooks=" + comicBooks +
+                ", products=" + products +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
                 '}';
@@ -88,7 +91,7 @@ public class Cart {
 
         private Long cartId;
         private Customer customer;
-//        private  List<ComicBook> comicBooks;
+        private List<Product> products;
         private LocalDate createdDate;
         private LocalDate updatedDate;
 
@@ -106,10 +109,10 @@ public class Cart {
             return this;
         }
 
-//        public Builder setComicBooks(List<ComicBook> comicBooks) {
-//            this.comicBooks = comicBooks;
-//            return this;
-//        }
+        public Builder setProducts(List<Product> products) {
+            this.products = products;
+            return this;
+        }
 
         public Builder setCreatedDate(LocalDate createdDate) {
             this.createdDate = createdDate;
@@ -123,7 +126,7 @@ public class Cart {
         public Builder copy(Cart cart){
             this.cartId=cart.cartId;
             this.customer=cart.customer;
-//            this.comicBooks=cart.comicBooks;
+            this.products=cart.products;
             this.createdDate=cart.createdDate;
             this.updatedDate=cart.updatedDate;
             return this;
