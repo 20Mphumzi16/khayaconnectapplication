@@ -53,8 +53,8 @@ export default {
       if (!Array.isArray(this.wishlist)) {
         return false;
       }
-      const isInWishlist = this.wishlist.some((item) => item.id === this.item.id);
-      console.log(`Item :Id ${this.item.id} - Is in Wishlist: ${isInWishlist}`);
+      const isInWishlist = this.wishlist.some((item) => item.id === this.item.productId);
+      console.log(`Item :Id ${this.item.productId} - Is in Wishlist: ${isInWishlist}`);
       return isInWishlist;
     }
   },
@@ -63,14 +63,14 @@ export default {
       return `R${price}`;
     },
     handleAddToCart() {
-      this.$emit('add-to-cart', this.item.id);
+      this.$emit('add-to-cart', this.item.productId);
     },
     toggleWishlist() {
-      this.$emit('toggle-wishlist', this.item.id);
+      this.$emit('toggle-wishlist', this.item.productId);
     },
 
       selectItem() {
-        this.$emit('comic-selected', this.item.id);
+        this.$emit('comic-selected', this.item.productId);
       }
   }
 };

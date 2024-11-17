@@ -4,7 +4,7 @@
     <div class="grid">
       <ItemCard
           v-for="item in items"
-          :key="item.id"
+          :key="item.productId"
           :item="item"
           :wishlist="wishlist"
           @item-selected="handleItemSelected"

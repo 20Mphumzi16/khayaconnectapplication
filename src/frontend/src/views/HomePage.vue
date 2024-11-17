@@ -71,6 +71,7 @@ export default {
       try {
         const response = await getAllItems();
         const allItems= response.data;
+        console.log('Items', allItems);
 
         this.newArrivals = allItems.slice(0, 4);
         this.hotPicks = allItems.slice(4, 8);
