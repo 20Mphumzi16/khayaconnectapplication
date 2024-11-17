@@ -66,7 +66,7 @@ public class CartController {
         return cartService.quantity(cartId);
 
     }
-    @PostMapping("/{cartId}/addComicBook/{sku}")
+    @PostMapping("/{cartId}/addProduct/{sku}")
     public Cart addToCart(@PathVariable("cartId") Long cartId,@PathVariable("sku") Long sku){
         return addToCartApi.addProductToCart(cartId,sku);
     }

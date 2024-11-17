@@ -63,6 +63,8 @@ export default {
       return `R${price}`;
     },
     handleAddToCart() {
+      console.log('Product ID:', this.item.productId);
+      console.log('Adding product to Cart');
       this.$emit('add-to-cart', this.item.productId);
     },
     toggleWishlist() {
@@ -85,13 +87,14 @@ export default {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 300px;
-  height: 480px;
+  height: 500px;
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 
 .item-card:hover {
   transform: translateY(-10px);
@@ -100,9 +103,11 @@ export default {
 
 .item-image {
   width: 100%;
-  height: auto;
+  height: 200px; /* Fixed height */
+  object-fit: cover; /* Ensures image fits without distortion */
   border-radius: 8px;
 }
+
 
 .heart-icon {
   position: absolute;
@@ -145,6 +150,8 @@ export default {
   flex: 1 1 auto;
   flex-grow: 1;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 70%;
 }
 
@@ -186,7 +193,8 @@ export default {
   font-weight: bold;
   transition: background-color 0.3s ease;
   align-self: center;
-  margin-bottom: 20px;
+  margin-top: auto;
+  margin-bottom: 0px;
   margin: 20px auto 0 auto;
   display: block;
 }
