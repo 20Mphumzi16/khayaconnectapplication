@@ -2,6 +2,7 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -16,6 +17,18 @@ public class Seller extends User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products;
 
+    private String businessAddress;
+    private String businessEmail;
+    private String businessBrief;
+    private String hearAboutUs;
+    private boolean isVerified;
+
+    @Lob
+    private byte[] saIdentityDocument;
+
+    @Lob
+    private byte[] proofOfAddress;
+
     protected Seller() {
     }
 
@@ -27,6 +40,15 @@ public class Seller extends User {
         this.password = s.password;
         this.businessName = s.businessName;
         this.products = s.products;
+        this.businessAddress = s.businessAddress;
+        this.businessBrief = s.businessBrief;
+        this.hearAboutUs = s.hearAboutUs;
+        this.saIdentityDocument = s.saIdentityDocument;
+        this.proofOfAddress = s.proofOfAddress;
+        this.isVerified = s.isVerified;
+
+
+
     }
 
     public String getBusinessName() {
@@ -44,6 +66,24 @@ public class Seller extends User {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+    public String getBusinessAddress() {
+        return businessAddress;
+    }
+    public void setBusinessAddress(String businessAddress) {
+        this.businessAddress = businessAddress;
+
+    }
+    public String getBusinessBrief() {
+        return businessBrief;
+
+    }
+    public void setBusinessBrief(String businessBrief) {
+        this.businessBrief = businessBrief;
+    }
+
+    public String getHearAboutUs() {
+        return hearAboutUs;
+    }
 
     public static class SellerBuilder {
 
@@ -53,8 +93,19 @@ public class Seller extends User {
         private Contact contact;
         private String businessName;
         private List<Product> products;
+        private String businessAddress;
+        private String businessBrief;
+        private String hearAboutUs;
+        private String businessEmail;
+        private boolean isVerified;
 
-        // Builder methods
+        @Lob
+        private byte[] saIdentityDocument;
+
+        @Lob
+        private byte[] proofOfAddress;
+
+
         public SellerBuilder setUserId(long userId) {
             this.userId = userId;
             return this;
@@ -80,6 +131,41 @@ public class Seller extends User {
             return this;
         }
 
+        public SellerBuilder setBusinessAddress(String businessAddress) {
+            this.businessAddress = businessAddress;
+            return this;
+        }
+
+        public SellerBuilder setBusinessBrief(String businessBrief) {
+            this.businessBrief = businessBrief;
+            return this;
+        }
+
+        public SellerBuilder setHearAboutUs(String hearAboutUs) {
+            this.hearAboutUs = hearAboutUs;
+            return this;
+        }
+
+        public SellerBuilder setSaIdentityDocument(byte[] saIdentityDocument) {
+            this.saIdentityDocument = saIdentityDocument;
+            return this;
+        }
+
+        public SellerBuilder setBusinessEmail(String businessEmail) {
+            this.businessEmail = businessEmail;
+            return this;
+        }
+
+        public SellerBuilder setVerified(boolean verified) {
+            isVerified = verified;
+            return this;
+        }
+
+        public SellerBuilder setProofOfAddress(byte[] proofOfAddress) {
+            this.proofOfAddress = proofOfAddress;
+            return this;
+        }
+
         public SellerBuilder setProducts(List<Product> products) {
             this.products = products;
             return this;
@@ -96,6 +182,14 @@ public class Seller extends User {
             this.contact = s.contact;
             this.businessName = s.businessName;
             this.products = s.products;
+            this.businessAddress = s.businessAddress;
+            this.businessBrief = s.businessBrief;
+            this.hearAboutUs = s.hearAboutUs;
+            this.saIdentityDocument = s.saIdentityDocument;
+            this.proofOfAddress = s.proofOfAddress;
+            this.businessEmail = s.businessEmail;
+            this.isVerified = s.isVerified;
+
             return this;
         }
 
@@ -107,11 +201,18 @@ public class Seller extends User {
     @Override
     public String toString() {
         return "Seller{" +
-                "userId=" + userId +
+                "businessName='" + businessName + '\'' +
+                ", products=" + products +
+                ", businessAddress='" + businessAddress + '\'' +
+                ", businessBrief='" + businessBrief + '\'' +
+                ", hearAboutUs='" + hearAboutUs + '\'' +
+                ", saIdentityDocument=" + Arrays.toString(saIdentityDocument) +
+                ", proofOfAddress=" + Arrays.toString(proofOfAddress) +
+                ", userId=" + userId +
+                ", password='" + password + '\'' +
                 ", name=" + name +
                 ", contact=" + contact +
-                ", businessName='" + businessName + '\'' +
-                ", products=" + products +
+                ", roles=" + roles +
                 '}';
     }
 

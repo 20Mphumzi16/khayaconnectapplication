@@ -16,6 +16,7 @@ public class SellerService implements ISellerService {
 
     @Override
     public Seller create(Seller seller) {
+        Seller newSeller = new Seller.SellerBuilder().copy(seller).setVerified(false).build();
         return sellerRepository.save(seller);
     }
 

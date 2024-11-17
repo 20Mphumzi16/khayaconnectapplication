@@ -1,16 +1,21 @@
 <template>
 
-  <HomePage/>
+  <SellerCreation/>
 </template>
 
 <script>
 
-import HomePage from "@/views/HomePage.vue";
+//import HomePage from "@/views/HomePage.vue";
+
+//import UserProfile from "@/components/UserProfile.vue";
+//import Register from "@/components/Register.vue";
+import SellerCreation from "@/components/SellerCreation.vue";
 
 export default {
   name: 'App',
   components: {
-    HomePage
+    SellerCreation
+
   }
 }
 </script>
